@@ -1,0 +1,107 @@
+<html>
+  <head>
+    <style>
+      .slides {
+        background-color: lightgray;
+        width: 400px;
+        height: 400px;
+        position: relative;
+      }
+      .slide .content {
+        background-color: gray;
+        width: 96%;
+        margin: 2%;
+        height: 80%;
+        top: 0px;
+        position: absolute;
+      }
+      .prev, .next, .preview {
+        background-color: darkgray;
+        width: 20px;
+        height: 20px;
+        margin: 2px;
+        border: 2px solid transparent;
+        text-align: center;
+        float: left;
+        margin-top: 84%;
+      }
+
+      .slide.visible .preview {
+        border-color: red;
+      }
+
+      .slide:not(.visible) .content  {
+        display: none;
+      }
+    </style>
+
+    <script src='https://code.jquery.com/jquery-2.1.3.min.js'></script>
+    <script>
+      var currentFocus = function() {
+        return $('.slide.visible')
+      }
+
+      var trySwitchFocus = function(target) {
+        if(target.length) {
+          currentFocus().removeClass('visible')
+          target.addClass('visible')
+        }
+      }
+
+      $(document).ready(function() {
+        $('.next').click(function() {
+          trySwitchFocus(currentFocus().next('.slide'))
+        })
+        $('.prev').click(function() {
+          trySwitchFocus(currentFocus().prev('.slide'))
+        })
+        $('.preview').click(function() {
+          trySwitchFocus($(this).parent('.slide'))
+        })
+      })
+    </script>
+  </head>
+
+  <body>
+    <div class='slides'>
+      <div class='prev'>
+        <
+      </div>
+      <div class='slide visible'>
+        <div class='content'>
+          1000
+        </div>
+        <div class='preview'>
+          1
+        </div>
+      </div>
+      <div class='slide'>
+        <div class='content'>
+          2000
+        </div>
+        <div class='preview'>
+          2
+        </div>
+      </div>
+      <div class='slide'>
+        <div class='content'>
+          3000
+        </div>
+        <div class='preview'>
+          3
+        </div>
+      </div>
+      <div class='slide'>
+        <div class='content'>
+          4000
+        </div>
+        <div class='preview'>
+          4
+        </div>
+      </div>
+      <div class='next'>
+        >
+      </div>
+    </div>
+  </body>
+</html>
